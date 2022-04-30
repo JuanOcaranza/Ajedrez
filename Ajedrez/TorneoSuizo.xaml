@@ -1,0 +1,36 @@
+﻿<local:Torneo x:Class="Ajedrez.TorneoSuizo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Height="450" Width="1000" Closed="Torneo_Closed" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Jugar" CanExecute="Jugar_CanExecute" Executed="Jugar_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="215" Command="local:Comandos.Jugar" ToolTip="Juega la siguiente partida">_Jugar próxima partida</Button>
+        </StackPanel>
+        <TabControl x:Name="tabControl" Background="{local:Opcion Background}">
+            <TabItem Header="Posiciones">
+                <DataGrid AutoGenerateColumns="False" Style="{DynamicResource dataGridStyle}" ItemsSource="{Binding Jugadores}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
+                        <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
+                        <DataGridTextColumn Header="Elo" Binding="{Binding Elo}"/>
+                        <DataGridTextColumn Header="Puntos" Binding="{Binding Puntos}"/>
+                        <DataGridTextColumn Header="Neustadtl" Binding="{Binding Neustadtl}"/>
+                        <DataGridTextColumn Header="Buchholz" Binding="{Binding Buchholz}"/>
+                        <DataGridTextColumn Header="Acumulativo" Binding="{Binding Acumulativo}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</local:Torneo>

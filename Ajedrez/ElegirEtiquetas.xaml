@@ -1,0 +1,29 @@
+﻿<Window x:Class="Ajedrez.ElegirEtiquetas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Seleccionar etiquetas opcionales que se incluirán en el archivo pgn" Height="auto" Width="auto" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Aceptar_CanExecute" Executed="Cancelar_Execute"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda el archivo con las etiquetas opcionles seleccionadas (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Cancela el guardado y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="False" ItemsSource="{Binding Elementos}" Style="{StaticResource dataGridStyle}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Etiqueta" IsReadOnly="True" Binding="{Binding Etiqueta}"/>
+                <DataGridTextColumn Header="Descripción" IsReadOnly="True" Binding="{Binding Descripcion}"/>
+                <DataGridCheckBoxColumn Header="Incluir" Binding="{Binding Incluir}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

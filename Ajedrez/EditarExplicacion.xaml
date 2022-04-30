@@ -1,0 +1,65 @@
+﻿<local:Editar x:Class="Ajedrez.EditarExplicacion" x:TypeArguments="local:Explicacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Editar Explicación" Height="600" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+        <Style TargetType="ListBox" BasedOn="{StaticResource listBoxStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarExplicacion" CanExecute="Cancelar_CanExecute" Executed="SeleccionarExplicacion_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+    </Window.CommandBindings>
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Target="{Binding ElementName=nombre}">_Nombre:</Label>
+        <TextBox Grid.Row="0" x:Name="nombre" Text="{Binding Nombre}" MaxLength="50"/>
+        <Label Grid.Row="1" Target="{Binding ElementName=autor}">A_utor:</Label>
+        <TextBox Grid.Row="1" x:Name="autor" Text="{Binding Autor}" MaxLength="50"/>
+        <Label Grid.Row="2" Target="{Binding ElementName=descripcionPosicion}">_Descripción de la posición:</Label>
+        <TextBox Grid.Row="2" x:Name="descripcionPosicion" Validation.Error="TextBox_ValidationError" MaxLength="81">
+            <TextBox.Text>
+                <Binding Path="DescripcionPosicion"  UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+        <Label Grid.Row="3" Target="{Binding ElementName=descripcion}">D_escripción:</Label>
+        <TextBox Grid.Row="3" Name="descripcion" FontSize="12" Height="100" AcceptsReturn="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled"
+            VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Validation.Error="TextBox_ValidationError" MaxLength="5000">
+            <TextBox.Text>
+                <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+        <StackPanel Grid.Row="4">
+            <Label>Explicaciones Relacionadas:</Label>
+            <Button ToolTip="Añade una explicación a la lista de explicaciones relacionadas (Ctrl+X)" Command="local:Comandos.SeleccionarExplicacion">A_gregar</Button>
+            <Button ToolTip="Quita las explicaciones seleccionadas de la lista de explicaciones relacionadas (Suprimir)" Command="ApplicationCommands.Delete">
+                _Quitar
+            </Button>
+        </StackPanel>
+        <ListBox Grid.Row="4" x:Name="explicacionesRelacionadas" ItemsSource="{Binding ExplicacionesRelacionadas}"/>
+        <StackPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda los cambios y cierra la ventana (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte los cambios y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+    </Grid>
+</local:Editar>

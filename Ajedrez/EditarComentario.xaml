@@ -1,0 +1,26 @@
+﻿<Window x:Class="Ajedrez.EditarComentario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Comentario" Height="220" Width="450" Background="{local:Opcion Background}">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Executed"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Aceptar_CanExecute" Executed="Cancelar_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda el comentario y cierra la ventana (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte el comentario y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+        <TextBox HorizontalAlignment="Center" x:Name="comentario" FontSize="12" Height="100" Width="400" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled" VerticalContentAlignment="Top" MaxLength="500"/>
+    </DockPanel>
+</Window>

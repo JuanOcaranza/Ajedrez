@@ -1,0 +1,79 @@
+﻿<Window x:Class="Ajedrez.ConfigurarTorneoEliminatorio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Configurar torneo eliminatorio" Height="650" Width="700" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+        <Style TargetType="ListBox" BasedOn="{StaticResource listBoxStyle}"/>
+        <Style TargetType="ScrollViewer" BasedOn="{StaticResource scrollViewerStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarJugador" CanExecute="Cancelar_CanExecute" Executed="SeleccionarJugador_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+        <CommandBinding Command="local:Comandos.MoverArriba" CanExecute="MoverArriba_CanExecute" Executed="MoverArriba_Executed"/>
+        <CommandBinding Command="local:Comandos.MoverAbajo" CanExecute="MoverAbajo_CanExecute" Executed="MoverAbajo_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+            </StackPanel.Resources>
+            <Button Command="local:Comandos.Aceptar" ToolTip="Crea un torneo con la configuración establecida (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Cancela la creación del torneo y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+        <ScrollViewer>
+            <Grid x:Name="grid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="300"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Target="{Binding ElementName=nombre}">_Nombre:</Label>
+                <TextBox Grid.Row="0" x:Name="nombre" Validation.Error="TextBox_ValidationError" MaxLength="50" Text="{Binding Evento.Nombre, NotifyOnValidationError=True,
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Grid.Row="1" Target="{Binding ElementName=sitio}">_Sitio:</Label>
+                <TextBox Grid.Row="1" x:Name="sitio" Validation.Error="TextBox_ValidationError" MaxLength="50" Text="{Binding Evento.Sitio, NotifyOnValidationError=True,
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Grid.Row="2" Target="{Binding ElementName=seccion}">S_ección:</Label>
+                <TextBox Grid.Row="2" x:Name="seccion" Text="{Binding Evento.Seccion}" MaxLength="50"/>
+                <Label Grid.Row="3" Target="{Binding ElementName=tiempo}">_Tiempo:</Label>
+                <TextBox Grid.Row="3" x:Name="tiempo" Validation.Error="TextBox_ValidationError" MaxLength="50">
+                    <TextBox.Text>
+                        <Binding Path="Tiempo" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <local:TiempoPGNRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <StackPanel Grid.Row="4">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                            <Setter Property="Width" Value="150" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Label>Jugadores:</Label>
+                    <Button ToolTip="Añade un participante a la lista de participantes (Ctrl+J)" Command="local:Comandos.SeleccionarJugador">A_gregar</Button>
+                    <Button ToolTip="Quita los jugadores seleccionados de la lista de participantes (Suprimir)" Command="ApplicationCommands.Delete">_Quitar</Button>
+                    <Button ToolTip="Mueve arriba el jugador selecionado (Ctrl+W)" Command="local:Comandos.MoverArriba">_Mover arriba</Button>
+                    <Button ToolTip="Mueve abajo el jugador selecionado (Ctrl+S)" Command="local:Comandos.MoverAbajo">M_over abajo</Button>
+                </StackPanel>
+                <ListBox Grid.Row="4" x:Name="jugadores" ItemsSource="{Binding Jugadores}"/>
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

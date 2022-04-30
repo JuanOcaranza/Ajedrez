@@ -1,0 +1,161 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Ajedrez.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ColorCasillasBlancas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFF5FFFB</Value>
+    </Setting>
+    <Setting Name="ColorCasillasNegras" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF4182BB</Value>
+    </Setting>
+    <Setting Name="ConjuntoPiezas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Alpha</Value>
+    </Setting>
+    <Setting Name="CoronarSiempreDama" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CaracteresPieza" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="TamañoLetraJugadas" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="BackgroundJugadas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF191919</Value>
+    </Setting>
+    <Setting Name="BackgroundJugadores" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF292929</Value>
+    </Setting>
+    <Setting Name="BackgroundReloj" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF111111</Value>
+    </Setting>
+    <Setting Name="SePuedeDeshacerEnJuego" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Motor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stockfish_20011801_x64.exe</Value>
+    </Setting>
+    <Setting Name="BackgroundMotor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF111111</Value>
+    </Setting>
+    <Setting Name="SePuedeExigirJugada" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ProfundidadAnalisis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="CantidadDeLineasAnalisis" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="HilosAnalisis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HashAnalisis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="MoverArrastrando" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AjedrezConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOPJUAN\SQLEXPRESS;Initial Catalog=Ajedrez;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOPJUAN\SQLEXPRESS;Initial Catalog=Ajedrez;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="EliminarDirectamente" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ProfundidadConTiempoIlimitado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="BackgroundBaseDeDatos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF111111</Value>
+    </Setting>
+    <Setting Name="BackgroundDataGrid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF1E1E1E</Value>
+    </Setting>
+    <Setting Name="BackgroundDataGridRow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF101010</Value>
+    </Setting>
+    <Setting Name="BackgroundDataGridRowAlternativo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF151515</Value>
+    </Setting>
+    <Setting Name="Background" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF1E1E1E</Value>
+    </Setting>
+    <Setting Name="BackgroundBotones" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF90EE90</Value>
+    </Setting>
+    <Setting Name="BackgroundMenu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF383838</Value>
+    </Setting>
+    <Setting Name="BackgroundBarraMenu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF202020</Value>
+    </Setting>
+    <Setting Name="BackgroundComboBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF404040</Value>
+    </Setting>
+    <Setting Name="ColorTexto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoBaseDeDatos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoDataGrid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoJugadas" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoJugadores" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoMotor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoReloj" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoBotones" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
+    </Setting>
+    <Setting Name="ColorTextoMenu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoBarraMenu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoComboBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoTextBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="BackgroundTextBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF404040</Value>
+    </Setting>
+    <Setting Name="BackgroundListBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF404040</Value>
+    </Setting>
+    <Setting Name="ColorTextoListBox" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorTextoError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCC0000</Value>
+    </Setting>
+    <Setting Name="BackgroundDataGridHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF030303</Value>
+    </Setting>
+    <Setting Name="ColorTextoDataGridHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFCCCCCC</Value>
+    </Setting>
+    <Setting Name="ColorBordeCasillaSeleccionada" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF008000</Value>
+    </Setting>
+    <Setting Name="AvisarReiniciar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

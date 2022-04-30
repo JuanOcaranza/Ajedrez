@@ -1,0 +1,70 @@
+﻿<local:Editar x:Class="Ajedrez.EditarApertura" x:TypeArguments="local:Apertura"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Editar apertura" Height="650" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+        <Style TargetType="ListBox" BasedOn="{StaticResource listBoxStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource textBlockStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarApertura" CanExecute="Cancelar_CanExecute" Executed="SeleccionarApertura_Executed"/>
+        <CommandBinding Command="local:Comandos.EstablecerNulo" CanExecute="EstablecerNulo_CanExecute" Executed="EstablecerNUlo_Executed"/>
+        <CommandBinding Command="local:Comandos.AgregarPosicion" CanExecute="Cancelar_CanExecute" Executed="AgregarPosicion_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+    </Window.CommandBindings>
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Target="{Binding ElementName=nombre}">_Nombre:</Label>
+        <TextBox Grid.Row="0" x:Name="nombre" Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+            MaxLength="50" Validation.Error="TextBox_ValidationError"/>
+        <Label Grid.Row="1" Target="{Binding ElementName=eco}">_ECO:</Label>
+        <TextBox Grid.Row="1" x:Name="eco" Validation.Error="TextBox_ValidationError" Text="{Binding ECO, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True,
+            ValidatesOnDataErrors=True}"/>
+        <Label Grid.Row="2" Target="{Binding ElementName=nic}">N_IC:</Label>
+        <TextBox Grid.Row="2" x:Name="nic" Text="{Binding NIC}" MaxLength="4"/>
+        <Label Grid.Row="3" Target="{Binding ElementName=seleccionar}">Apertura de la que es variante:</Label>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock x:Name="variante" Margin="20"/>
+            <StackPanel Width="120" Margin="0,0,30,0" VerticalAlignment="Center">
+                <Button x:Name="seleccionar" Command="local:Comandos.SeleccionarApertura" ToolTip="Selecciona la apertura de la cuál esta es variante (Ctrl+A)"
+                    Width="110" Margin="5">
+                    Seleccionar
+                </Button>
+                <Button Command="local:Comandos.EstablecerNulo" ToolTip="Indica que esta apertura no es variante de ninguna otra (Ctrl+N)" Width="110" Margin="5">
+                    Ninguna
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="4">
+            <Label>Posiciones:</Label>
+            <Button ToolTip="Añade una posición a la lista de posiciones de la apertura (Ctrl+P)" Command="local:Comandos.AgregarPosicion">Agregar</Button>
+            <Button ToolTip="Quita las posiciones seleccionadas de la lista de posiciones (Suprimir)" Command="ApplicationCommands.Delete">Quitar</Button>
+        </StackPanel>
+        <ListBox Grid.Row="4" x:Name="posiciones" ItemsSource="{Binding Posiciones}"/>
+        <StackPanel Grid.Row="5" HorizontalAlignment="Right" Grid.Column="1" Orientation="Horizontal">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda los cambios y cierra la ventana (Enter)">Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte los cambios y cierra la ventana (Escape)">Cancelar</Button>
+        </StackPanel>
+    </Grid>
+</local:Editar>

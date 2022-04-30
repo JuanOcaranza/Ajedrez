@@ -1,0 +1,169 @@
+﻿<Window x:Class="Ajedrez.VentanaApertura"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="{Binding Nombre}" Height="700" Width="auto" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource textBlockStyle}"/>
+        <Style TargetType="RowDefinition">
+            <Setter Property="Height" Value="50" />
+        </Style>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Editar" CanExecute="Editar_CanExecute" Executed="Editar_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Delete" CanExecute="Editar_CanExecute" Executed="Delete_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarPartida" CanExecute="SeleccionarPartida_CanExecute"  Executed="SeleccionarPartida_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <TextBlock DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center">
+                <Run Text="{Binding ECO}" ToolTip="ECO: Designación de la apertura en Encyclopedia of Chess Opennings"/>
+                <Run Text="   "/>
+                <Run Text="{Binding Nombre}" ToolTip="Nombre de la apertura"/>
+                <Run Text="   "/>
+                <Run Text="{Binding NIC}" ToolTip="NIC: Designación de la apertura en New In Chess"/>
+        </TextBlock>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="local:Comandos.Editar" ToolTip="Edita esta apertura (Ctrl+E)">Editar</Button>
+            <Button Command="ApplicationCommands.Delete" ToolTip="Elimina esta apertura y cierra la ventana (Suprimir)">Borrar</Button>
+            <Button Command="local:Comandos.SeleccionarPartida" ToolTip="Permite seleccionar una de las partids jugadas con esta apertura (Ctrl+P)">Partidas</Button>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0">Partidas:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Partidas.Count}"/>
+                <TextBlock Grid.Row="1">Victoria blanco:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1">
+                    <Run Text="{Binding Partidas.Victoria, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="2">Victoria negro:</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1">
+                    <Run Text="{Binding Partidas.Derrota, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="3">Tablas:</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1">
+                    <Run Text="{Binding Partidas.Tablas, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="5" Grid.ColumnSpan="2" FontSize="22">Situaciones posicionales antes de la jugada 25</TextBlock>
+                <TextBlock Grid.Row="6">Intercambio de damas:</TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="1">
+                    <Run Text="{Binding Partidas.IntercambioDeDamas, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="7">Pareja de alfiles:</TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="1">
+                    <Run Text="{Binding Partidas.ParejaDeAlfiles, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="8">Columnas centrales abiertas:</TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="1">
+                    <Run Text="{Binding Partidas.ColumnasCentralesAbiertas, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="9">Peón dama aislado:</TextBlock>
+                <TextBlock Grid.Row="9" Grid.Column="1">
+                    <Run Text="{Binding Partidas.PeonDamaAislado, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="10">Reyes en flancos opuestos:</TextBlock>
+                <TextBlock Grid.Row="10" Grid.Column="1">
+                    <Run Text="{Binding Partidas.ReyesEnFlancosOpuestos, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="11">Peón llega a sexta:</TextBlock>
+                <TextBlock Grid.Row="11" Grid.Column="1">
+                    <Run Text="{Binding Partidas.PeonLlegaASexta, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="13" Grid.ColumnSpan="2" FontSize="22">Finales</TextBlock>
+                <TextBlock Grid.Row="14">Dama contra dama</TextBlock>
+                <TextBlock Grid.Row="14" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalDamaContraDama, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="15">Dama contra torre</TextBlock>
+                <TextBlock Grid.Row="15" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalDamaContraTorre, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="16">Dama contra alfil</TextBlock>
+                <TextBlock Grid.Row="16" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalDamaContraAlfil, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="17">Dama contra caballo</TextBlock>
+                <TextBlock Grid.Row="17" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalDamaContraCaballo, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="18">Torre contra torre</TextBlock>
+                <TextBlock Grid.Row="18" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalTorreContraTorre, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="19">Torre contra alfil</TextBlock>
+                <TextBlock Grid.Row="19" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalTorreContraAlfil, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="20">Torre contra caballo</TextBlock>
+                <TextBlock Grid.Row="20" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalTorreContraCaballo, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="21">Alfil contra alfil</TextBlock>
+                <TextBlock Grid.Row="21" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalAlfilContraAlfil, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="22">Alfil contra caballo</TextBlock>
+                <TextBlock Grid.Row="22" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalAlfilContraCaballo, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="23">Caballo contra caballo</TextBlock>
+                <TextBlock Grid.Row="23" Grid.Column="1">
+                    <Run Text="{Binding Partidas.FinalCaballoContraCaballo, Mode=OneWay}"/>
+                    <Run>%</Run>
+                </TextBlock>
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

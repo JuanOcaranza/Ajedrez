@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Ajedrez.Controles.Tablero"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500" Name="TableroUserControl">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="AllowDrop" Value="True" />
+            <EventSetter Event="Click" Handler="Button_Click"/>
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="Button_PreviewMouseLeftButtonDown"/>
+            <EventSetter Event="Drop" Handler="Button_Drop"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor"  Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Name="TableroGrid" DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="a8" Grid.Column="0" Grid.Row="0" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="a7" Grid.Column="0" Grid.Row="1" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="a6" Grid.Column="0" Grid.Row="2" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="a5" Grid.Column="0" Grid.Row="3" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="a4" Grid.Column="0" Grid.Row="4" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="a3" Grid.Column="0" Grid.Row="5" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="a2" Grid.Column="0" Grid.Row="6" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="a1" Grid.Column="0" Grid.Row="7" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="b8" Grid.Column="1" Grid.Row="0" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="b7" Grid.Column="1" Grid.Row="1" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="b6" Grid.Column="1" Grid.Row="2" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="b5" Grid.Column="1" Grid.Row="3" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="b4" Grid.Column="1" Grid.Row="4" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="b3" Grid.Column="1" Grid.Row="5" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="b2" Grid.Column="1" Grid.Row="6" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="b1" Grid.Column="1" Grid.Row="7" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="c8" Grid.Column="2" Grid.Row="0" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="c7" Grid.Column="2" Grid.Row="1" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="c6" Grid.Column="2" Grid.Row="2" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="c5" Grid.Column="2" Grid.Row="3" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="c4" Grid.Column="2" Grid.Row="4" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="c3" Grid.Column="2" Grid.Row="5" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="c2" Grid.Column="2" Grid.Row="6" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="c1" Grid.Column="2" Grid.Row="7" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="d8" Grid.Column="3" Grid.Row="0" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="d7" Grid.Column="3" Grid.Row="1" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="d6" Grid.Column="3" Grid.Row="2" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="d5" Grid.Column="3" Grid.Row="3" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="d4" Grid.Column="3" Grid.Row="4" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="d3" Grid.Column="3" Grid.Row="5" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="d2" Grid.Column="3" Grid.Row="6" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="d1" Grid.Column="3" Grid.Row="7" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="e8" Grid.Column="4" Grid.Row="0" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="e7" Grid.Column="4" Grid.Row="1" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="e6" Grid.Column="4" Grid.Row="2" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="e5" Grid.Column="4" Grid.Row="3" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="e4" Grid.Column="4" Grid.Row="4" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="e3" Grid.Column="4" Grid.Row="5" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="e2" Grid.Column="4" Grid.Row="6" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="e1" Grid.Column="4" Grid.Row="7" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="f8" Grid.Column="5" Grid.Row="0" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="f7" Grid.Column="5" Grid.Row="1" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="f6" Grid.Column="5" Grid.Row="2" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="f5" Grid.Column="5" Grid.Row="3" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="f4" Grid.Column="5" Grid.Row="4" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="f3" Grid.Column="5" Grid.Row="5" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="f2" Grid.Column="5" Grid.Row="6" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="f1" Grid.Column="5" Grid.Row="7" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="g8" Grid.Column="6" Grid.Row="0" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="g7" Grid.Column="6" Grid.Row="1" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="g6" Grid.Column="6" Grid.Row="2" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="g5" Grid.Column="6" Grid.Row="3" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="g4" Grid.Column="6" Grid.Row="4" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="g3" Grid.Column="6" Grid.Row="5" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="g2" Grid.Column="6" Grid.Row="6" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="g1" Grid.Column="6" Grid.Row="7" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="h8" Grid.Column="7" Grid.Row="0" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="h7" Grid.Column="7" Grid.Row="1" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="h6" Grid.Column="7" Grid.Row="2" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="h5" Grid.Column="7" Grid.Row="3" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="h4" Grid.Column="7" Grid.Row="4" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="h3" Grid.Column="7" Grid.Row="5" Background="{Binding ColorCasillasBlancas}"/>
+        <Button x:Name="h2" Grid.Column="7" Grid.Row="6" Background="{Binding ColorCasillasNegras}"/>
+        <Button x:Name="h1" Grid.Column="7" Grid.Row="7" Background="{Binding ColorCasillasBlancas}"/>
+    </Grid>
+</UserControl>

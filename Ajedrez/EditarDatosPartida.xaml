@@ -1,0 +1,232 @@
+﻿<local:VentanaSinBotones x:Class="Ajedrez.EditarDatosPartida"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Editar datos de la partida" Height="500" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize" KeyDown="Window_KeyDown"
+        Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource comboBoxStyle}">
+            <Setter Property="Width" Value="450" />
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+        <Style TargetType="TabItem" BasedOn="{StaticResource tabItemStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+        <Style TargetType="ScrollViewer" BasedOn="{StaticResource scrollViewerStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda los cambios y cierra la ventana (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte los cambios y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Background="{local:Opcion Background}">
+            <TabItem Header="_Blanco" IsSelected="True">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=nombreBlanco}">_Nombre:</Label>
+                        <TextBox Grid.Row="0" x:Name="nombreBlanco" Text="{Binding Etiquetas[White]}" MaxLength="50"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=tituloBlanco}">_Título:</Label>
+                        <ComboBox Grid.Row="1" x:Name="tituloBlanco" SelectedItem="{Binding Etiquetas[WhiteTitle]}"/>
+                        <Label Grid.Row="2" Target="{Binding ElementName=eloBlanco}">_Elo:</Label>
+                        <TextBox Grid.Row="2" x:Name="eloBlanco" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[WhiteElo]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:EloPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="3" Target="{Binding ElementName=naBlanco}">_Dirección de red:</Label>
+                        <TextBox Grid.Row="3" x:Name="naBlanco" Text="{Binding Etiquetas[WhiteNA]}" MaxLength="50"/>
+                        <Label Grid.Row="4" Target="{Binding ElementName=tipoBlanco}">T_ipo:</Label>
+                        <ComboBox Grid.Row="4" x:Name="tipoBlanco" SelectedItem="{Binding Etiquetas[WhiteType]}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Ne_gro">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=nombreNegro}">_Nombre:</Label>
+                        <TextBox Grid.Row="0" x:Name="nombreNegro" Text="{Binding Etiquetas[Black]}" MaxLength="50"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=tituloNegro}">_Título:</Label>
+                        <ComboBox Grid.Row="1" x:Name="tituloNegro" SelectedItem="{Binding Etiquetas[BlackTitle]}"/>
+                        <Label Grid.Row="2" Target="{Binding ElementName=eloNegro}">_Elo:</Label>
+                        <TextBox Grid.Row="2" x:Name="eloNegro" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[BlackElo]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:EloPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="3" Target="{Binding ElementName=naNegro}">_Dirección de red:</Label>
+                        <TextBox Grid.Row="3" x:Name="naNegro" Text="{Binding Etiquetas[BlackNA]}" MaxLength="50"/>
+                        <Label Grid.Row="4" Target="{Binding ElementName=tipoNegro}">T_ipo:</Label>
+                        <ComboBox Grid.Row="4" x:Name="tipoNegro" SelectedItem="{Binding Etiquetas[BlackType]}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="_Partida">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=resultado}">_Resultado:</Label>
+                        <ComboBox Grid.Row="0" x:Name="resultado" SelectedItem="{Binding Etiquetas[Result]}"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=fecha}">_Fecha:</Label>
+                        <TextBox Grid.Row="1" x:Name="fecha" Validation.Error="TextBox_ValidationError" MaxLength="10">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[Date]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:FechaPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="2" Target="{Binding ElementName=hora}">_Hora:</Label>
+                        <TextBox Grid.Row="2" x:Name="hora" Validation.Error="TextBox_ValidationError" MaxLength="8">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[Time]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:HoraPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="3" Target="{Binding ElementName=controlTiempo}">_Tiempo:</Label>
+                        <TextBox Grid.Row="3" x:Name="controlTiempo" Validation.Error="TextBox_ValidationError" MaxLength="50">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[TimeControl]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:TiempoPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="4" Target="{Binding ElementName=horaUTC}">H_ora UTC:</Label>
+                        <TextBox Grid.Row="4" x:Name="horaUTC" Validation.Error="TextBox_ValidationError"  MaxLength="8">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[UTCTime]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:HoraPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="5" Target="{Binding ElementName=fechaUTC}">Fe_cha UTC:</Label>
+                        <TextBox Grid.Row="5" x:Name="fechaUTC" Validation.Error="TextBox_ValidationError" MaxLength="10">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[UTCDate]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:FechaPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="6" Target="{Binding ElementName=terminacion}">T_erminación:</Label>
+                        <ComboBox Grid.Row="6" x:Name="terminacion" SelectedItem="{Binding Etiquetas[Termination]}"/>
+                        <Label Grid.Row="7" Target="{Binding ElementName=anotador}">_Anotador:</Label>
+                        <TextBox Grid.Row="7" x:Name="anotador" Text="{Binding Etiquetas[Annotator]}" MaxLength="50"/>
+                        <Label Grid.Row="8" Target="{Binding ElementName=modo}">_Modo:</Label>
+                        <TextBox Grid.Row="8" x:Name="modo" Text="{Binding Etiquetas[Mode]}" MaxLength="50"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="E_vento">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=nombreEvento}">_Nombre:</Label>
+                        <TextBox Grid.Row="0" x:Name="nombreEvento" Text="{Binding Etiquetas[Event]}" MaxLength="50"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=sitio}">_Sitio:</Label>
+                        <TextBox Grid.Row="1" x:Name="sitio" Text="{Binding Etiquetas[Site]}" MaxLength="50"/>
+                        <Label Grid.Row="2" Target="{Binding ElementName=ronda}">_Ronda:</Label>
+                        <TextBox Grid.Row="2" x:Name="ronda" Text="{Binding Etiquetas[Round]}" MaxLength="50"/>
+                        <Label Grid.Row="3" Target="{Binding ElementName=fechaEvento}">_Fecha:</Label>
+                        <TextBox Grid.Row="3" x:Name="fechaEvento" Validation.Error="TextBox_ValidationError" MaxLength="10">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[EventDate]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:FechaPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="4" Target="{Binding ElementName=seccion}">Se_cción:</Label>
+                        <TextBox Grid.Row="4" x:Name="seccion" Text="{Binding Etiquetas[Section]}" MaxLength="50"/>
+                        <Label Grid.Row="5" Target="{Binding ElementName=etapa}">_Etapa:</Label>
+                        <TextBox Grid.Row="5" x:Name="etapa" Text="{Binding Etiquetas[Stage]}" MaxLength="50"/>
+                        <Label Grid.Row="6" Target="{Binding ElementName=tablero}">Tab_lero:</Label>
+                        <TextBox Grid.Row="6" x:Name="tablero" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <Binding Path="Etiquetas[Board]" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <local:TableroPGNRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</local:VentanaSinBotones>

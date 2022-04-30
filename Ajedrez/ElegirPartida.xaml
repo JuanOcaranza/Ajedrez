@@ -1,0 +1,37 @@
+﻿<Window x:Class="Ajedrez.ElegirPartida"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Elegir partida" Height="auto" Width="auto" Background="{local:Opcion Background}">
+    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Style="{StaticResource dataGridStyle}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Blancas" Binding="{Binding Etiquetas[White]}"/>
+            <DataGridTextColumn Header="Elo Blancas" Binding="{Binding Etiquetas[WhiteElo]}"/>
+            <DataGridTextColumn Header="Título Blancas" Binding="{Binding Etiquetas[WhiteTitle]}"/>
+            <DataGridTextColumn Header="Negras" Binding="{Binding Etiquetas[Black]}"/>
+            <DataGridTextColumn Header="Elo Negras" Binding="{Binding Etiquetas[BlackElo]}"/>
+            <DataGridTextColumn Header="Título Negras" Binding="{Binding Etiquetas[BlackTitle]}"/>
+            <DataGridTextColumn Header="Resultado" Binding="{Binding Etiquetas[Result]}"/>
+            <DataGridTextColumn Header="Tiempo" Binding="{Binding Etiquetas[TimeControl]}"/>
+            <DataGridTextColumn Header="Fecha" Binding="{Binding Etiquetas[Date]}"/>
+            <DataGridTextColumn Header="Evento" Binding="{Binding Etiquetas[Event]}"/>
+            <DataGridTextColumn Header="Ronda" Binding="{Binding Etiquetas[Round]}"/>
+            <DataGridTextColumn Header="Sitio" Binding="{Binding Etiquetas[Site]}"/>
+            <DataGridTextColumn Header="Tipo Blancas" Binding="{Binding Etiquetas[WhiteType]}"/>
+            <DataGridTextColumn Header="Tipo Negras" Binding="{Binding Etiquetas[BlackType]}"/>
+        </DataGrid.Columns>
+        <DataGrid.RowDetailsTemplate>
+            <DataTemplate>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding TextoJugadas}" TextWrapping="Wrap" Width="{Binding ElementName=dataGrid, Path=ActualWidth}"/>
+            </DataTemplate>
+        </DataGrid.RowDetailsTemplate>
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow">
+                <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+            </Style>
+        </DataGrid.RowStyle>
+    </DataGrid>
+</Window>

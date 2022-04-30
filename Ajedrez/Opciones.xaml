@@ -1,0 +1,304 @@
+﻿<local:VentanaSinBotones x:Class="Ajedrez.Opciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        xmlns:c="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+        mc:Ignorable="d"
+        Title="Opciones" Height="500" Width="950" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Background="{local:Opcion Background}">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ColorPickerLib;component/Themes/LightBrushs.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}">
+                <Setter Property="Width" Value="450" />
+            </Style>
+            <Style TargetType="TabItem" BasedOn="{StaticResource tabItemStyle}"/>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource comboBoxStyle}">
+                <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Width" Value="450" />
+            </Style>
+            <Style TargetType="ScrollViewer" BasedOn="{StaticResource scrollViewerStyle}"/>
+            <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+            <Style TargetType="c:ColorPicker">
+                <Setter Property="Grid.Column" Value="1" />
+            </Style>
+            <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource checkBoxStyle}">
+                <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Margin" Value="10 0 0 0" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda los cambios y cierra la ventana (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte los cambios y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+        <TabControl TabStripPlacement="Left" Background="{local:Opcion Background}">
+            <TabItem Header="_Juego">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=comoboBoxConjuntoDePiezas}">Conj_uto de piezas:</Label>
+                        <ComboBox x:Name="comoboBoxConjuntoDePiezas" Grid.Row="0" SelectedItem="{local:Opcion ConjuntoPiezas}"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=checkBoxCoronarSiempreDama}">Co_ronar siempre dama:</Label>
+                        <CheckBox x:Name="checkBoxCoronarSiempreDama" Grid.Row="1" IsChecked="{local:Opcion CoronarSiempreDama}"/>
+                        <Label Grid.Row="2" Target="{Binding ElementName=checkBoxSePuedeDeshacerEnJuego}">_Permitir volver atras durante juego:</Label>
+                        <CheckBox x:Name="checkBoxSePuedeDeshacerEnJuego" Grid.Row="2" IsChecked="{local:Opcion SePuedeDeshacerEnJuego}"/>
+                        <Label Grid.Row="3" Target="{Binding ElementName=comboBoxMovimiento}">Mo_ver piezas:</Label>
+                        <ComboBox Name="comboBoxMovimiento" Grid.Row="3">
+                            <ComboBoxItem>Haciendo click en la pieza y luego en el destino</ComboBoxItem>
+                            <ComboBoxItem>Arrastrando la pieza hasta el destino</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="A_notación">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=comboBoxCaracteresPieza}">Ca_racteres para las piezas:</Label>
+                        <ComboBox x:Name="comboBoxCaracteresPieza" Grid.Row="0" SelectedIndex="{local:Opcion CaracteresPieza}">
+                            <ComboBoxItem>Figura</ComboBoxItem>
+                            <ComboBoxItem>Español</ComboBoxItem>
+                            <ComboBoxItem>Inglés</ComboBoxItem>
+                            <ComboBoxItem>Figura rellena</ComboBoxItem>
+                        </ComboBox>
+                        <Label Grid.Row="1" Target="{Binding ElementName=textBoxTamañoLetraJugadas}">_Tamaño letras</Label>
+                        <TextBox x:Name="textBoxTamañoLetraJugadas" Grid.Row="1" Text="{local:Opcion TamañoLetraJugadas, NotifyOnValidationError=True,
+                            UpdateSourceTrigger=PropertyChanged}" Validation.Error="TextBox_ValidationError"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="_Motor">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=comoboBoxMotor}">Mo_tor de análisis:</Label>
+                        <ComboBox x:Name="comoboBoxMotor" Grid.Row="0" SelectedItem="{local:Opcion Motor}"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=checkBoxSePuedeExigirJugada}">Pe_rmitir exigir jugada:</Label>
+                        <CheckBox x:Name="checkBoxSePuedeExigirJugada" Grid.Row="1" IsChecked="{local:Opcion SePuedeExigirJugada}"/>
+                        <Label Grid.Row="2" Target="{Binding ElementName=textBoxProfundidadAnalisis}">Pro_fundidad de análisis:</Label>
+                        <TextBox x:Name="textBoxProfundidadAnalisis" Grid.Row="2" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <local:Opcion Path="ProfundidadAnalisis" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <local:Opcion.ValidationRules>
+                                        <local:MayorACeroRule/>
+                                    </local:Opcion.ValidationRules>
+                                </local:Opcion>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="3" Target="{Binding ElementName=textBoxCantidadDeLineasAnalisis}">Canti_dad de líneas:</Label>
+                        <TextBox x:Name="textBoxCantidadDeLineasAnalisis" Grid.Row="3" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <local:Opcion Path="CantidadDeLineasAnalisis" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <local:Opcion.ValidationRules>
+                                        <local:MayorACeroRule/>
+                                    </local:Opcion.ValidationRules>
+                                </local:Opcion>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="4" Target="{Binding ElementName=textBoxHilosAnalisis}">Cantidad de _hilos:</Label>
+                        <TextBox x:Name="textBoxHilosAnalisis" Grid.Row="4" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <local:Opcion Path="HilosAnalisis" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <local:Opcion.ValidationRules>
+                                        <local:MayorACeroRule/>
+                                    </local:Opcion.ValidationRules>
+                                </local:Opcion>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="5" Target="{Binding ElementName=textBoxHashAnalisis}">Tama_ño hash (en MB)</Label>
+                        <TextBox x:Name="textBoxHashAnalisis" Grid.Row="5" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <local:Opcion Path="HashAnalisis" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <local:Opcion.ValidationRules>
+                                        <local:MayorACeroRule/>
+                                    </local:Opcion.ValidationRules>
+                                </local:Opcion>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Grid.Row="6" Target="{Binding ElementName=textBoxProfundidadConTiempoIlimitado}">Prof_undidad con tiempo ilimitado:</Label>
+                        <TextBox x:Name="textBoxProfundidadConTiempoIlimitado" Grid.Row="6" Validation.Error="TextBox_ValidationError">
+                            <TextBox.Text>
+                                <local:Opcion Path="ProfundidadConTiempoIlimitado" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <local:Opcion.ValidationRules>
+                                        <local:MayorACeroRule/>
+                                    </local:Opcion.ValidationRules>
+                                </local:Opcion>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="C_olores">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0">Fondo:</Label>
+                        <c:ColorPicker Grid.Row="0" SelectedColor="{local:Opcion Background}"/>
+                        <Label Grid.Row="1">Fondo base de datos:</Label>
+                        <c:ColorPicker Grid.Row="1" SelectedColor="{local:Opcion BackgroundBaseDeDatos}"/>
+                        <Label Grid.Row="2">Fondo grillas:</Label>
+                        <c:ColorPicker Grid.Row="2" SelectedColor="{local:Opcion BackgroundDataGrid}"/>
+                        <Label Grid.Row="3">Fondo filas de grillas:</Label>
+                        <c:ColorPicker Grid.Row="3" SelectedColor="{local:Opcion BackgroundDataGridRow}"/>
+                        <Label Grid.Row="4">Fondo filas de grillas alternativas:</Label>
+                        <c:ColorPicker Grid.Row="4" SelectedColor="{local:Opcion BackgroundDataGridRowAlternativo}"/>
+                        <Label Grid.Row="5">Fondo jugadas:</Label>
+                        <c:ColorPicker Grid.Row="5" SelectedColor="{local:Opcion BackgroundJugadas}"/>
+                        <Label Grid.Row="6">Fondo jugadores:</Label>
+                        <c:ColorPicker Grid.Row="6" SelectedColor="{local:Opcion BackgroundJugadores}"/>
+                        <Label Grid.Row="7">Fondo motor:</Label>
+                        <c:ColorPicker Grid.Row="7" SelectedColor="{local:Opcion BackgroundMotor}"/>
+                        <Label Grid.Row="8">Fondo relojes:</Label>
+                        <c:ColorPicker Grid.Row="8" SelectedColor="{local:Opcion BackgroundReloj}"/>
+                        <Label Grid.Row="9">Fondo botones:</Label>
+                        <c:ColorPicker Grid.Row="9" SelectedColor="{local:Opcion BackgroundBotones}"/>
+                        <Label Grid.Row="10">Fondo menús:</Label>
+                        <c:ColorPicker Grid.Row="10" SelectedColor="{local:Opcion BackgroundMenu}"/>
+                        <Label Grid.Row="11">Fondo barra de menús:</Label>
+                        <c:ColorPicker Grid.Row="11" SelectedColor="{local:Opcion BackgroundBarraMenu}"/>
+                        <Label Grid.Row="12">Fondo combo box:</Label>
+                        <c:ColorPicker Grid.Row="12" SelectedColor="{local:Opcion BackgroundComboBox}"/>
+                        <Label Grid.Row="13">Fondo listas:</Label>
+                        <c:ColorPicker Grid.Row="13" SelectedColor="{local:Opcion BackgroundListBox}"/>
+                        <Label Grid.Row="14">Fondo cajas de texto:</Label>
+                        <c:ColorPicker Grid.Row="14" SelectedColor="{local:Opcion BackgroundTextBox}"/>
+                        <Label Grid.Row="15">Casillas claras:</Label>
+                        <c:ColorPicker Grid.Row="15" SelectedColor="{local:Opcion ColorCasillasBlancas}"/>
+                        <Label Grid.Row="16">Casillas oscuras:</Label>
+                        <c:ColorPicker Grid.Row="16" SelectedColor="{local:Opcion ColorCasillasNegras}"/>
+                        <Label Grid.Row="17">Texto:</Label>
+                        <c:ColorPicker Grid.Row="17" SelectedColor="{local:Opcion ColorTexto}"/>
+                        <Label Grid.Row="18">Texto base de datos:</Label>
+                        <c:ColorPicker Grid.Row="18" SelectedColor="{local:Opcion ColorTextoBaseDeDatos}"/>
+                        <Label Grid.Row="19">Texto grilla:</Label>
+                        <c:ColorPicker Grid.Row="19" SelectedColor="{local:Opcion ColorTextoDataGrid}"/>
+                        <Label Grid.Row="20">Texto jugadas:</Label>
+                        <c:ColorPicker Grid.Row="20" SelectedColor="{local:Opcion ColorTextoJugadas}"/>
+                        <Label Grid.Row="21">Texto jugadores:</Label>
+                        <c:ColorPicker Grid.Row="21" SelectedColor="{local:Opcion ColorTextoJugadores}"/>
+                        <Label Grid.Row="22">Texto motor:</Label>
+                        <c:ColorPicker Grid.Row="22" SelectedColor="{local:Opcion ColorTextoMotor}"/>
+                        <Label Grid.Row="23">Texto reloj:</Label>
+                        <c:ColorPicker Grid.Row="23" SelectedColor="{local:Opcion ColorTextoReloj}"/>
+                        <Label Grid.Row="24">Texto botones:</Label>
+                        <c:ColorPicker Grid.Row="24" SelectedColor="{local:Opcion ColorTextoBotones}"/>
+                        <Label Grid.Row="25">Texto menús:</Label>
+                        <c:ColorPicker Grid.Row="25" SelectedColor="{local:Opcion ColorTextoMenu}"/>
+                        <Label Grid.Row="26">Texto barra de menús:</Label>
+                        <c:ColorPicker Grid.Row="26" SelectedColor="{local:Opcion ColorTextoBarraMenu}"/>
+                        <Label Grid.Row="27">Texto combo box:</Label>
+                        <c:ColorPicker Grid.Row="27" SelectedColor="{local:Opcion ColorTextoComboBox}"/>
+                        <Label Grid.Row="28">Texto cajas de texto:</Label>
+                        <c:ColorPicker Grid.Row="28" SelectedColor="{local:Opcion ColorTextoTextBox}"/>
+                        <Label Grid.Row="29">Texto listas:</Label>
+                        <c:ColorPicker Grid.Row="29" SelectedColor="{local:Opcion ColorTextoListBox}"/>
+                        <Label Grid.Row="30">Texto errores:</Label>
+                        <c:ColorPicker Grid.Row="30" SelectedColor="{local:Opcion ColorTextoError}"/>
+                        <Label Grid.Row="31">Texto cabezera de grilla:</Label>
+                        <c:ColorPicker Grid.Row="31" SelectedColor="{local:Opcion ColorTextoDataGridHeader}"/>
+                        <Label Grid.Row="32">Fondo cabezera de grilla:</Label>
+                        <c:ColorPicker Grid.Row="32" SelectedColor="{local:Opcion BackgroundDataGridHeader}"/>
+                        <Label Grid.Row="33">Borde casilla seleccionada:</Label>
+                        <c:ColorPicker Grid.Row="33" Background="{local:Opcion Background}"  SelectedColor="{local:Opcion ColorBordeCasillaSeleccionada}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Otro_s">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Target="{Binding ElementName=checkBoxEliminarDirectamente}">_Eliminar sin confirmación</Label>
+                        <CheckBox x:Name="checkBoxEliminarDirectamente" Grid.Row="0" IsChecked="{local:Opcion EliminarDirectamente}"/>
+                        <Label Grid.Row="1" Target="{Binding ElementName=checkBoxAvisarReiniciar}">A_visar que hay que reiniciar</Label>
+                        <CheckBox x:Name="checkBoxAvisarReiniciar" Grid.Row="1" IsChecked="{local:Opcion AvisarReiniciar}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</local:VentanaSinBotones>

@@ -1,0 +1,333 @@
+﻿<local:VentanaSinBotones
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        xmlns:Controles="clr-namespace:Ajedrez.Controles" x:Class="Ajedrez.MainWindow"
+        mc:Ignorable="d"
+        Title="Ajedrez" Closed="Window_Closed" WindowState="Maximized" x:Name="mainWindow" Background="{local:Opcion Background}" Loaded="Window_Loaded">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed"/>
+        <CommandBinding Command="local:Comandos.JugadaSiguiente" CanExecute="JugadaSiguiente_CanExecuted" Executed="JugadaSiguiente_Executed"/>
+        <CommandBinding Command="local:Comandos.JugadaAnterior" CanExecute="JugadaAnterior_CanExecuted" Executed="JugadaAnterior_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Undo" CanExecute="Undo_CanExecuted" Executed="Undo_Executed" />
+        <CommandBinding Command="ApplicationCommands.SaveAs" CanExecute="InsertarPartida_CanExecute"  Executed="SaveAs_Executed"/>
+        <CommandBinding Command="local:Comandos.EditarDatosPartida" CanExecute="InsertarPartida_CanExecute"  Executed="EditarDatosPartida_Executed"/>
+        <CommandBinding Command="local:Comandos.Jugar" CanExecute="Jugar_CanExecute" Executed="Jugar_Executed"/>
+        <CommandBinding Command="local:Comandos.Abandonar" CanExecute="Abandonar_CanExecute" Executed="Abandonar_Executed"/>
+        <CommandBinding Command="local:Comandos.NuevaPartida" CanExecute="Open_CanExecute" Executed="NuevaPartida_Executed"/>
+        <CommandBinding Command="local:Comandos.OfrecerTablas" CanExecute="OfrecerTablas_CanExecute" Executed="OfrecerTablas_Executed"/>
+        <CommandBinding Command="local:Comandos.OfrecerRevancha" CanExecute="OfrecerRevancha_CanExecute" Executed="OfrecerRevancha_Executed"/>
+        <CommandBinding Command="local:Comandos.JugarInmediatamente" CanExecute="JugarInmediatamente_CanExecute" Executed="JugarInmediatamente_Executed"/>
+        <CommandBinding Command="local:Comandos.Analizar" CanExecute="Analizar_CanExecute" Executed="Analizar_Executed"/>
+        <CommandBinding Command="local:Comandos.SeguirAnalizando" CanExecute="SeguirAnalizando_CanExecute" Executed="SeguirAnalizando_Executed"/>
+        <CommandBinding Command="local:Comandos.InsertarPartida" CanExecute="InsertarPartida_CanExecute" Executed="InsertarPartida_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarPartida" CanExecute="Open_CanExecute"  Executed="SeleccionarPartida_Executed"/>
+        <CommandBinding Command="local:Comandos.EliminarPartida" CanExecute="EliminarPartida_CanExecute" Executed="EliminarPartida_Executed"/>
+        <CommandBinding Command="local:Comandos.MostrarResultadosJugada" CanExecute="InsertarPartida_CanExecute"  Executed="MostrarResultadosJugada_Executed"/>
+        <CommandBinding Command="local:Comandos.IrAlInicio" CanExecute="JugadaAnterior_CanExecuted" Executed="IrAlInicio_Executed"/>
+        <CommandBinding Command="local:Comandos.IrAlFinal" CanExecute="JugadaSiguiente_CanExecuted" Executed="IrAlFinal_Executed"/>
+        <CommandBinding Command="local:Comandos.RealizarEjercicio" CanExecute="Open_CanExecute"  Executed="RealizarEjercicio_Executed"/>
+        <CommandBinding Command="local:Comandos.CrearEjercicio" CanExecute="Open_CanExecute" Executed="CrearEjercicio_Executed"/>
+        <CommandBinding Command="local:Comandos.EditarEjercicio" CanExecute="EditarEjercicio_CanExecute" Executed="EditarEjercicio_Executed"/>
+        <CommandBinding Command="local:Comandos.EliminarEjercicio" CanExecute="EliminarEjercicio_CanExecute" Executed="EliminarEjercicio_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarExplicacion" CanExecute="Open_CanExecute" Executed="SeleccionarExplicacion_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarExplicacionRelacionada" CanExecute="EliminarExplicacion_CanExecute"
+            Executed="SeleccionarExplicacionRealacionada_Executed"/>
+        <CommandBinding Command="local:Comandos.CrearExplicacion" CanExecute="Open_CanExecute" Executed="CrearExplicacion_Executed"/>
+        <CommandBinding Command="local:Comandos.EditarExplicacion" CanExecute="EditarExplicacion_CanExecute" Executed="EditarExplicacion_Executed"/>
+        <CommandBinding Command="local:Comandos.EliminarExplicacion" CanExecute="EliminarExplicacion_CanExecute" Executed="EliminarExplicacion_Executed"/>
+        <CommandBinding Command="local:Comandos.EditarComentario" CanExecute="EditarComentario_CanExecute" Executed="EditarComentario_Executed"/>
+        <CommandBinding Command="local:Comandos.EditarNAG" CanExecute="EditarComentario_CanExecute" Executed="EditarNAG_Executed"/>
+        <CommandBinding Command="local:Comandos.CrearJugador" CanExecute="Open_CanExecute" Executed="CrearJugador_Executed"/>
+        <CommandBinding Command="local:Comandos.CrearApertura" CanExecute="Open_CanExecute" Executed="CrearApertura_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarApertura" CanExecute="Open_CanExecute" Executed="SeleccionarApertura_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarJugador" CanExecute="Open_CanExecute" Executed="SeleccionarJugador_Executed"/>
+        <CommandBinding Command="local:Comandos.CrearEvento" CanExecute="Open_CanExecute" Executed="CrearEvento_Executed"/>
+        <CommandBinding Command="local:Comandos.SeleccionarEvento" CanExecute="Open_CanExecute" Executed="SeleccionarEvento_Executed"/>
+        <CommandBinding Command="local:Comandos.RealizarTorneoEliminatorio" CanExecute="Open_CanExecute" Executed="RealizarTorneoEliminatorio_Executed"/>
+        <CommandBinding Command="local:Comandos.RealizarTorneoSuizo" CanExecute="Open_CanExecute" Executed="RealizarTorneoSuizo_Executed"/>
+        <CommandBinding Command="local:Comandos.Configurar" CanExecute="Open_CanExecute" Executed="Configurar_Executed"/>
+        <CommandBinding Command="local:Comandos.Restaurar" CanExecute="Open_CanExecute" Executed="Restaurar_Executed"/>
+        <CommandBinding Command="local:Comandos.CopiarFEN" CanExecute="Open_CanExecute" Executed="CopiarFEN_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="local:Comandos.Minimizar" CanExecute="Close_CanExecute" Executed="Minimizar_Executed"/>
+        <CommandBinding Command="local:Comandos.InsertarTodasLasPartidasDeUnPGN" CanExecute="Open_CanExecute" Executed="InsertarTodasLasPartidasDeUnPGN_Executed"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.SaveAs" Gesture="Ctrl+G"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="mainWindowTextBlockStyle">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{local:Opcion ColorTexto}" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockJugador" BasedOn="{StaticResource mainWindowTextBlockStyle}">
+            <Setter Property="Background" Value="{local:Opcion BackgroundJugadores}" />
+            <Setter Property="Foreground" Value="{local:Opcion ColorTextoJugadores}" />
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockReloj" BasedOn="{StaticResource mainWindowTextBlockStyle}">
+            <Setter Property="Background" Value="{local:Opcion BackgroundReloj}" />
+            <Setter Property="Foreground" Value="{local:Opcion ColorTextoReloj}" />
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource checkBoxStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="IsChecked" Value="False"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Height="30" Background="White">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="DockPanel.Dock" Value="Right" />
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="FontSize" Value="20" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="Margin" Value="10 0 0 0" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </DockPanel.Resources>
+            <TextBlock HorizontalAlignment="Left">Ajedrez</TextBlock>
+            <Button Command="ApplicationCommands.Close" ToolTip="Cerrar (Alt+F4)">x</Button>
+            <Button Command="local:Comandos.Minimizar" ToolTip="Minimizar">-</Button>
+        </DockPanel>
+        <Menu DockPanel.Dock="Top" Background="{local:Opcion BackgroundBarraMenu}">
+            <MenuItem VerticalAlignment="Center" Header="_Partida" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.NuevaPartida"/>
+                <MenuItem Command="ApplicationCommands.Open" InputGestureText="Ctrl+O" Header="A_brir..."/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.InsertarPartida"/>
+                <MenuItem Command="local:Comandos.SeleccionarPartida"/>
+                <MenuItem Command="local:Comandos.EditarDatosPartida"/>
+                <MenuItem Command="local:Comandos.EliminarPartida"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.CopiarFEN"/>
+                <MenuItem Header="_Guardar en PGN..." Command="ApplicationCommands.SaveAs" InputGestureText="Ctrl+G"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.InsertarTodasLasPartidasDeUnPGN"/>
+            </MenuItem>
+            <MenuItem Header="_Editar" Template="{DynamicResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="ApplicationCommands.Undo" Header="_Deshacer"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.JugadaSiguiente" InputGestureText="Derecha"/>
+                <MenuItem Command="local:Comandos.JugadaAnterior" InputGestureText="Izquierda"/>
+                <MenuItem Command="local:Comandos.IrAlInicio" InputGestureText="Inicio / Ctrl+Izquierda"/>
+                <MenuItem Command="local:Comandos.IrAlFinal" InputGestureText="Fin / Ctrl+Derecha"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.EditarComentario"/>
+                <MenuItem Header="NAG" Template="{StaticResource SubMenuItemControlTemplate}">
+                    <MenuItem Header="Ninguno" Command="local:Comandos.EditarNAG" CommandParameter="0"/>
+                    <MenuItem Header="Jugada" Template="{StaticResource SubMenuItemControlTemplate}">
+                        <MenuItem Header="Buena" Command="local:Comandos.EditarNAG" CommandParameter="1" Icon="  !"/>
+                        <MenuItem Header="Mala" Command="local:Comandos.EditarNAG" CommandParameter="2" Icon="  ?"/>
+                        <MenuItem  Header="Muy buena" Command="local:Comandos.EditarNAG" CommandParameter="3" Icon="  ‼"/>
+                        <MenuItem Header="Muy mala" Command="local:Comandos.EditarNAG" CommandParameter="4" Icon="  ⁇"/>
+                        <MenuItem Header="Especulativa" Command="local:Comandos.EditarNAG" CommandParameter="5" Icon="  ⁉"/>
+                        <MenuItem  Header="Cuestionable" Command="local:Comandos.EditarNAG" CommandParameter="6" Icon="  ⁈"/>
+                        <MenuItem Header="Forzada" Command="local:Comandos.EditarNAG" CommandParameter="7" Icon="  □"/>
+                    </MenuItem>
+                    <MenuItem Header="Posición" Template="{DynamicResource SubMenuItemControlTemplate}">
+                        <MenuItem Header="Igualada" Command="local:Comandos.EditarNAG" CommandParameter="10" Icon="  ="/>
+                        <MenuItem Header="No clara" Command="local:Comandos.EditarNAG" CommandParameter="13" Icon="  ∞"/>
+                        <MenuItem Header="Blanco tiene pequeña ventaja" Command="local:Comandos.EditarNAG" CommandParameter="14" Icon="  ⩲"/>
+                        <MenuItem Header="Negro tiene pequeña ventaja" Command="local:Comandos.EditarNAG" CommandParameter="15" Icon="  ⩱"/>
+                        <MenuItem Header="Blanco tiene ventaja" Command="local:Comandos.EditarNAG" CommandParameter="16" Icon="  ±"/>
+                        <MenuItem Header="Negro tiene ventaja" Command="local:Comandos.EditarNAG" CommandParameter="17" Icon="  ∓"/>
+                        <MenuItem Header="Blanco tiene ventaja decisiva" Command="local:Comandos.EditarNAG" CommandParameter="18" Icon="+ −"/>
+                        <MenuItem Header="Negro tiene ventaja decisiva" Command="local:Comandos.EditarNAG" CommandParameter="19" Icon="- +"/>
+                    </MenuItem>
+                    <MenuItem Header="Zugzwang" Command="local:Comandos.EditarNAG" CommandParameter="22" Icon=" ⨀"/>
+                    <MenuItem Header="Desarrollo" Command="local:Comandos.EditarNAG" CommandParameter="32" Icon=" ⟳"/>
+                    <MenuItem Header="Iniciativa" Command="local:Comandos.EditarNAG" CommandParameter="36" Icon=" →"/>
+                    <MenuItem Header="Ataque" Command="local:Comandos.EditarNAG" CommandParameter="40" Icon=" ↑"/>
+                    <MenuItem Header="Compensación" Command="local:Comandos.EditarNAG" CommandParameter="44">
+                        <MenuItem.Icon>
+                            <TextBlock FontSize="8">=/∞</TextBlock>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Contrajuego" Command="local:Comandos.EditarNAG" CommandParameter="132" Icon=" ⇆"/>
+                    <MenuItem Header="Poco tiempo" Command="local:Comandos.EditarNAG" CommandParameter="138" Icon=" ⨁"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Juego" Template="{DynamicResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Header="Ju_gar" Template="{DynamicResource SubMenuItemControlTemplate}">
+                    <MenuItem Header="Hum_ano contra humano..." Command="local:Comandos.Jugar" CommandParameter="0"/>
+                    <MenuItem Header="Huma_no contra programa..." Command="local:Comandos.Jugar" CommandParameter="1"/>
+                    <MenuItem Header="Pr_ograma contra humano..." Command="local:Comandos.Jugar" CommandParameter="2"/>
+                    <MenuItem Header="Programa con_tra programa..." Command="local:Comandos.Jugar" CommandParameter="3"/>
+                </MenuItem>
+                <MenuItem Command="local:Comandos.OfrecerRevancha"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.OfrecerTablas"/>
+                <MenuItem Command="local:Comandos.Abandonar"/>
+            </MenuItem>
+            <MenuItem Header="_Motor" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.JugarInmediatamente"/>
+                <Separator/>
+                <MenuItem Command="local:Comandos.SeguirAnalizando"/>
+            </MenuItem>
+            <MenuItem Header="Ejerc_icio" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.CrearEjercicio"/>
+                <MenuItem Command="local:Comandos.RealizarEjercicio"/>
+                <MenuItem Command="local:Comandos.EditarEjercicio"/>
+                <MenuItem Command="local:Comandos.EliminarEjercicio"/>
+            </MenuItem>
+            <MenuItem Header="E_xplicación" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.CrearExplicacion"/>
+                <MenuItem Header="Se_leccionar" Template="{StaticResource SubMenuItemControlTemplate}">
+                    <MenuItem Command="local:Comandos.SeleccionarExplicacion"/>
+                    <MenuItem Command="local:Comandos.SeleccionarExplicacionRelacionada"/>
+                </MenuItem>
+                <MenuItem Command="local:Comandos.EditarExplicacion"/>
+                <MenuItem Command="local:Comandos.EliminarExplicacion"/>
+            </MenuItem>
+            <MenuItem Header="J_ugador" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.CrearJugador"/>
+                <MenuItem Command="local:Comandos.SeleccionarJugador"/>
+            </MenuItem>
+            <MenuItem Header="Ape_rtura" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.CrearApertura"/>
+                <MenuItem Command="local:Comandos.SeleccionarApertura"/>
+            </MenuItem>
+            <MenuItem Header="E_vento" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.CrearEvento"/>
+                <MenuItem Command="local:Comandos.SeleccionarEvento"/>
+                <MenuItem Command="local:Comandos.RealizarTorneoEliminatorio"/>
+                <MenuItem Command="local:Comandos.RealizarTorneoSuizo"/>
+            </MenuItem>
+            <MenuItem Header="_Configuración" Template="{StaticResource MenuItemControlTemplate}" Foreground="{local:Opcion ColorTextoMenu}">
+                <MenuItem Command="local:Comandos.Configurar"/>
+                <MenuItem Command="local:Comandos.Restaurar"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Column="2" Grid.RowSpan="6" Background="{local:Opcion BackgroundDataGrid}"/>
+            <TextBlock Grid.Row="0" Style="{StaticResource TextBlockJugador}">
+                <Run Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[BlackTitle]}" ToolTip="Título FIDE del negro"/>
+                <Run Text="   "/>
+                <Run x:Name="runNombreNegro" Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[Black]}" ToolTip="Nombre del negro"/>
+                <Run Text="   "/>
+                <Run Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[BlackElo]}" ToolTip="Elo del negro"/>
+            </TextBlock>
+            <TextBlock Grid.Row="4" Style="{DynamicResource TextBlockJugador}">
+                <Run Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[WhiteTitle]}" ToolTip="Título FIDE del blanco"/>
+                <Run Text="   "/>
+                <Run x:Name="runNombreBlanco" Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[White]}" ToolTip="Nombre del blanco"/>
+                <Run Text="   "/>
+                <Run Text="{Binding ElementName=TableroAjedrez, Path=Partida.Etiquetas[WhiteElo]}" ToolTip="Elo del blanco"/>
+            </TextBlock>
+            <Controles:Tablero Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" x:Name="TableroAjedrez" Width="650" Height="650"
+                ColorBordeCasillaSeleccionada="{local:Opcion ColorBordeCasillaSeleccionada}"
+                ColorCasillasBlancas="{local:Opcion ColorCasillasBlancas}" ColorCasillasNegras="{local:Opcion ColorCasillasNegras}"
+                PropertyChanged="TableroAjedrez_PropertyChanged" JugadaRealizada="TableroAjedrez_JugadaRealizada"/>
+            <ScrollViewer Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="Jugadas" TextWrapping="Wrap" FontSize="{local:Opcion TamañoLetraJugadas}" Foreground="{local:Opcion ColorTextoJugadas}" FontWeight="Bold"
+                    Background="{local:Opcion BackgroundJugadas}" ToolTip="Jugadas realizadas en la partida">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1}" Mode="OneWay">
+                            <Binding ElementName="TableroAjedrez" Path="Partida.TextoJugadas"/>
+                            <Binding ElementName="TableroAjedrez" Path="Partida.Etiquetas[Result]"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </ScrollViewer>
+            <TextBlock Grid.Column="0" Grid.Row="4" x:Name="relojBlanco" Style="{StaticResource TextBlockReloj}" ToolTip="Tiempo restante para el blanco"
+                Text="{Binding ElementName=TableroAjedrez, Path=Partida.Reloj.TextoTiempoBlanco, Mode=OneWay}"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" x:Name="relojNegro"  Style="{StaticResource TextBlockReloj}" ToolTip="Tiempo restante para el negro"
+                Text="{Binding ElementName=TableroAjedrez, Path=Partida.Reloj.TextoTiempoNegro, Mode=OneWay}"/>
+            <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center">
+                <Button x:Name="ofrecerRevancha" Command="local:Comandos.OfrecerRevancha" ToolTip="Ofrecer revancha (Ctrl+V)">Revanc_ha</Button>
+                <Button x:Name="ofrecerTablas" Command="local:Comandos.OfrecerTablas" ToolTip="Ofrecer empate (Ctrl+M)">_Tablas</Button>
+                <Button  x:Name="abandonar" Command="local:Comandos.Abandonar" ToolTip="Rendirse (Ctrl+B)">_Abandonar</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Background="{local:Opcion BackgroundMotor}">
+                <CheckBox x:Name="analizar" Command="local:Comandos.Analizar" Foreground="{local:Opcion ColorTextoMotor}" VerticalAlignment="Center" Margin="10"
+                    ToolTip="Activar/Desactivar análisis del motor">
+                    Analizar
+                </CheckBox>
+                <TextBlock Style="{StaticResource mainWindowTextBlockStyle}" Foreground="{local:Opcion ColorTextoMotor}" Width="375">
+                    <Run Text="{Binding ElementName=mainWindow, Path=Motor.Nombre, Mode=OneWay}" ToolTip="Nombre del motor"/>
+                    <Run Text=": "/>
+                    <Run Text="{Binding ElementName=mainWindow, Path=Motor.Informacion[0].Valoracion, Mode=OneWay}"
+                        ToolTip="Valoración desde la perspectiva de las blancas">
+                    </Run>
+                </TextBlock>
+                <Button Command="local:Comandos.SeguirAnalizando" Height="30" FontSize="18" ToolTip="Analizar en mayor profundidad (Ctrl+S)">_Seguir analizando</Button>
+            </StackPanel>
+            <DataGrid x:Name="analisis" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ElementName=mainWindow, Path=Motor.Informacion}" FontSize="20"
+                IsHitTestVisible="False" AutoGenerateColumns="False">
+                <DataGrid.Style>
+                    <Style TargetType="DataGrid" BasedOn="{StaticResource dataGridStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=analizar, Path=IsChecked}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Style>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Valoración" Binding="{Binding Valoracion}"/>
+                    <DataGridTextColumn Header="Jugada" Binding="{Binding Jugada}"/>
+                    <DataGridTextColumn Header="Respuesta" Binding="{Binding Respuesta}"/>
+                    <DataGridTextColumn Header="Profundidad" Binding="{Binding Profundidad}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Background="{local:Opcion BackgroundBaseDeDatos}">
+                <CheckBox x:Name="mostrarResultadosJugada" Foreground="{local:Opcion ColorTextoBaseDeDatos}" Command="local:Comandos.MostrarResultadosJugada"
+                    CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" VerticalAlignment="Center" Margin="10"
+                    ToolTip="Mostrar/Ocultar jugadas de la base de datos">
+                    Visible
+                </CheckBox>
+                <TextBlock Style="{StaticResource mainWindowTextBlockStyle}" Foreground="{local:Opcion ColorTextoBaseDeDatos}" Width="400" Text="Base de Datos"/>
+            </StackPanel>
+            <DataGrid x:Name="resultadosJugada" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" AutoGenerateColumns="False" FontSize="20" IsHitTestVisible="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Jugada" Binding="{Binding Jugada}"/>
+                    <DataGridTextColumn Header="Cantidad de partidas" Binding="{Binding Partidas}"/>
+                    <DataGridTextColumn Header="% Victoria blanco" Binding="{Binding GanaBlanco}"/>
+                    <DataGridTextColumn Header="% Tablas" Binding="{Binding Tablas}"/>
+                    <DataGridTextColumn Header="% Victoria negro" Binding="{Binding GanaNegro}"/>
+                </DataGrid.Columns>
+                <DataGrid.Style>
+                    <Style TargetType="DataGrid" BasedOn="{StaticResource dataGridStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=mostrarResultadosJugada, Path=IsChecked}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Style>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</local:VentanaSinBotones>

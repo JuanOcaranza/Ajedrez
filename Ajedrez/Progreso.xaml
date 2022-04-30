@@ -1,0 +1,24 @@
+﻿<local:VentanaSinBotones x:Class="Ajedrez.Progreso"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Leyendo partidas" Height="150" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{local:Opcion Background}"
+            Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource textBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+    </Window.CommandBindings>
+    <StackPanel>
+        <TextBlock x:Name="textBlockProgreso">Iniciando lectura...</TextBlock>
+        <Button Command="local:Comandos.Cancelar" ToolTip="Detiene la lectura de archivos (Escape)">Cancelar</Button>
+    </StackPanel>
+</local:VentanaSinBotones>

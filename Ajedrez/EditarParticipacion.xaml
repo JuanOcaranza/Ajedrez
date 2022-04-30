@@ -1,0 +1,48 @@
+﻿<local:Editar x:Class="Ajedrez.EditarParticipacion" x:TypeArguments="local:Participa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ajedrez"
+        mc:Ignorable="d"
+        Title="Editar participación" Height="350" Width="700" ResizeMode="NoResize" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Background="{local:Opcion Background}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource buttonStyle}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource textBoxStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource labelStyle}"/>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource toolTipStyle}"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Comandos.Aceptar" CanExecute="Aceptar_CanExecute" Executed="Aceptar_Execute"/>
+        <CommandBinding Command="local:Comandos.Cancelar" CanExecute="Cancelar_CanExecute" Executed="Cancelar_Executed"/>
+    </Window.CommandBindings>
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Target="{Binding ElementName=eloConseguido}">_Elo conseguido:</Label>
+        <TextBox Grid.Row="0" x:Name="eloConseguido" Validation.Error="TextBox_ValidationError" Text="{Binding EloConseguido, NotifyOnValidationError=True,
+            UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="1" Target="{Binding ElementName=rendimiento}">_Rendimiento:</Label>
+        <TextBox Grid.Row="1" x:Name="rendimiento" Validation.Error="TextBox_ValidationError" Text="{Binding Rendimiento, NotifyOnValidationError=True,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <Label Grid.Row="2" Target="{Binding ElementName=puntos}">_Puntos:</Label>
+        <TextBox Grid.Row="2" x:Name="puntos" Validation.Error="TextBox_ValidationError" Text="{Binding Puntos, NotifyOnValidationError=True,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <Label Grid.Row="3" Target="{Binding ElementName=posicion}">P_osición:</Label>
+        <TextBox Grid.Row="3" x:Name="posicion" Validation.Error="TextBox_ValidationError" Text="{Binding Posicion, NotifyOnValidationError=True,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <StackPanel Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="local:Comandos.Aceptar" ToolTip="Guarda los cambios y cierra la ventana (Enter)">_Aceptar</Button>
+            <Button Command="local:Comandos.Cancelar" ToolTip="Revierte los cambios y cierra la ventana (Escape)">_Cancelar</Button>
+        </StackPanel>
+    </Grid>
+</local:Editar>
